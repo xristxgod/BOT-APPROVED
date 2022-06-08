@@ -12,20 +12,11 @@ bot = Bot(Config.BOT_APPROVED_TOKEN)
 dp = Dispatcher(bot, storage=storage)
 
 
-@dp.message_handler(commands=['start'])
-async def start(message: types.Message):
-    await message.answer(
-        (
-            "<b> Welcome to bot </b>"
-        ),
-        parse_mode=types.ParseMode.HTML
-    )
-
-
 @dp.message_handler(commands=['cache'])
 async def get_cache(message: types.Message):
     await message.answer(
-        "Help"
+        text=Utils.process_repository_cache_for_text(message=await Sender.get_message_cache()),
+        parse_mode=types.ParseMode.HTML,
     )
 
 

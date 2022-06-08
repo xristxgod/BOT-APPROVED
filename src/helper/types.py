@@ -5,7 +5,13 @@ import emoji
 
 
 SYMBOL = {
-    "approve": emoji.emojize(":check_mark:"),
+    "error": emoji.emojize(":thinking_face:"),
+    "empty": emoji.emojize(":shushing_face:"),
+    "cache": emoji.emojize(":eyes:"),
+    "userId": emoji.emojize(":id:", language='alias'),
+    "memo": emoji.emojize(":memo:", language='alias'),
+    "user": emoji.emojize(":bust_in_silhouette:"),
+    "approve": emoji.emojize(":check_mark_button:"),
     "reject": emoji.emojize(":cross_mark:")
 }
 
