@@ -18,11 +18,13 @@ SYMBOL = {
 
 @dataclass
 class BodyUpdateTransaction:
+    support_id: int
     userId: int
     nodeTransactionId: int
     network: str
     status: bool
     outputs: Optional[List[Dict]] = None
+    text: Optional[str] = None
 
     @property
     def to_json(self):
