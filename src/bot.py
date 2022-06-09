@@ -25,16 +25,11 @@ async def get_cache(message: types.Message):
 async def process_message(callback_query: types.CallbackQuery):
     logger.error(f"PROCESS MESSAGE | Data: {callback_query.data}")
     _, method, user_id, network, tx_id = callback_query.data.split("-")
-    outputs = Utils.outputs_parser(callback_query.message.text)
-    text = Utils.process_text(callback_query.message.text, method=method)
-    status = await Sender.update_transaction(data=BodyUpdateTransaction(
-        userId=user_id, nodeTransactionId=tx_id, network=network,
-        outputs=outputs, support_id=callback_query.from_user.id, text=text,
+    await Sender.update_transaction(data=BodyUpdateTransaction(
+        userId=user_id,
+        nodeTransactionId=tx_id,
+        network=network,
+        outputs=Utils.outputs_parser(callback_query.message.text),
+        text=Utils.process_text(callback_query.message.text, method=method),
         status=True if method == "approve" else False
     ))
-    if status:
-        await bot.edit_message_text(
-            text=text,
-            parse_mode=types.ParseMode.HTML,
-            chat_id=callback_query.message.chat.id,
-            message_id=callback_query.message.message_id)

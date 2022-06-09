@@ -18,7 +18,6 @@ SYMBOL = {
 
 @dataclass
 class BodyUpdateTransaction:
-    support_id: int
     userId: int
     nodeTransactionId: int
     network: str
